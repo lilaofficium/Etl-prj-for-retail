@@ -1,0 +1,40 @@
+# =============================================
+# ELT Pipeline - Requirements
+# Generated from .venv on 2026-06-05
+# =============================================
+
+# Core Data Processing
+pandas==3.0.3
+numpy==2.4.6
+
+# Database
+SQLAlchemy==2.0.50
+psycopg2-binary==2.9.12
+
+# Configuration & Environment
+python-dotenv==1.2.2
+
+# HTTP & API Handling
+requests==2.34.2
+
+# Data Validation & Settings
+pydantic==2.13.4
+pydantic-settings==2.14.1
+
+# Utilities
+PyYAML==6.0.3
+
+# Transitive dependencies (optional but recommended to pin for stability)
+certifi==2026.5.20
+charset-normalizer==3.4.7
+idna==3.18
+urllib3==2.7.0
+python-dateutil==2.9.0.post0
+tzdata==2026.2
+greenlet==3.5.1
+typing_extensions==4.15.0
+
+# =============================================
+# Installation Command:
+# pip install -r requirements.txt
+# =============================================

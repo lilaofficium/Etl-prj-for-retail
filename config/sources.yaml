@@ -1,0 +1,25 @@
+sources:
+  fakestore_products:
+    url: "https://fakestoreapi.com/products"
+    data_key: null # root is a list
+    format: json
+
+  dummyjson_products:
+    url: "https://dummyjson.com/products"
+    data_key: products # nested under this key
+    format: json
+
+  dummyjson_users:
+    url: "https://dummyjson.com/users"
+    data_key: users
+    format: json
+
+  dummyjson_carts:
+    url: "https://dummyjson.com/carts"
+    data_key: carts
+    format: json
+
+  jsonplaceholder_posts:
+    url: "https://jsonplaceholder.typicode.com/posts"
+    data_key: null
+    format: json
