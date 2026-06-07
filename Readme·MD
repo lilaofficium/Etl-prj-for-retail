@@ -1,0 +1,104 @@
+🛒 Retail ETL Pipeline
+
+A production-style Python ETL pipeline for retail data, built around the Medallion Architecture (Bronze → Silver → Gold). Raw retail data is ingested, cleaned, and transformed into analytics-ready tables stored in a PostgreSQL database.
+
+📐 Architecture Overview
+Raw Data Sources
+      │
+      ▼
+┌─────────────┐
+│   BRONZE    │  Raw ingestion — load CSV/source data as-is into PostgreSQL
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│   SILVER    │  Cleansed & deduplicated — upsert with validation
+└──────┬──────┘
+       │
+       ▼
+┌─────────────┐
+│    GOLD     │  Aggregated & analytics-ready — business KPIs and reporting tables
+└─────────────┘
+Each layer is an independent pipeline module. A unique PIPELINE_RUN_ID (UUID) is generated per run for traceability.
+
+📁 Project Structure
+Etl-prj-for-retail/
+│
+├── main.py                  # Orchestrator — runs Bronze → Silver → Gold in sequence
+├── requirements.txt         # Python dependencies
+├── .gitignore
+│
+├── bronze/
+│   └── pipeline.py          # Bronze layer: raw data ingestion
+│
+├── silver/
+│   └── pipeline.py          # Silver layer: cleaning & upsert
+│
+├── gold/
+│   └── pipeline.py          # Gold layer: aggregations & KPI tables
+│
+├── config/                  # Configuration files (DB, paths, settings)
+├── db/                      # Database connection & schema utilities
+├── utils/                   # Shared helper functions
+├── run_layer/               # Scripts to run individual layers independently
+│
+├── storage/
+│   └── bronze/              # Local file storage for raw source data
+│
+├── logs/                    # Runtime logs directory
+├── insert_errors.log        # DB insert error log
+└── insert_queries.log       # DB insert query log
+
+⚙️ Prerequisites
+
+Python 3.10+
+PostgreSQL (running and accessible)
+pip
+
+
+🚀 Getting Started
+1. Clone the repository
+git clone https://github.com/lilaofficium/Etl-prj-for-retail.git
+cd Etl-prj-for-retail
+git checkout upload-retail-prj
+
+
+2. Set up a virtual environment
+python -m venv .venv
+source .venv/bin/activate       # macOS/Linux
+.venv\Scripts\activate          # Windows
+
+
+3. Install dependencies
+install -r requirements.txt
+
+
+4. Configure environment
+Create a .env file in the project root with your database credentials:
+envDB_HOST=localhost
+DB_PORT=5432
+DB_NAME=retail_db
+DB_USER=your_user
+DB_PASSWORD=your_password
+
+⚠️ Never commit your .env file. It is already excluded via .gitignore.
+
+5. Run the full pipeline
+Run : main.py 
+This will execute Bronze → Silver → Gold sequentially and print a summary after each layer.
+
+
+
+
+6. Run individual layers
+Run : layer.run_bronze   # Bronze only
+Run : run_layer.run_silver   # Silver only
+Run : run_layer.run_gold     # Gold only
+
+ 
+
+📝 Logging
+
+insert_errors.log — Currently not in use
+insert_queries.log — Currently not in use
+logs/ — additional runtime logs per pipeline ru
