@@ -1,5 +1,5 @@
 CREATE SCHEMA IF NOT EXISTS bronze;
-ALTER CREATE TABLE IF NOT EXISTS bronze.fakestore_products (
+CREATE TABLE IF NOT EXISTS bronze.fakestore_products (
     id INTEGER,
     title TEXT,
     price TEXT,

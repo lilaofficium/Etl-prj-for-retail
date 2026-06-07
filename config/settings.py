@@ -26,6 +26,20 @@ class Settings(BaseSettings):
     postgres_user:     str
     postgres_password: str = Field(repr=False)   
 
+
+    silver_postgres_host:     str  
+    silver_postgres_port:     int 
+    silver_postgres_db:       str  
+    silver_postgres_user:     str 
+    silver_postgres_password: str = Field(default="", repr=False)
+
+
+    gold_postgres_host:     str  
+    gold_postgres_port:     int  
+    gold_postgres_db:       str  
+    gold_postgres_user:     str 
+    gold_postgres_password: str = Field(default="", repr=False)
+
     class Config:
         env_file          = ".env"
         env_file_encoding = "utf-8"
@@ -37,6 +51,20 @@ class Settings(BaseSettings):
             f"postgresql://{self.postgres_user}:{self.postgres_password}"
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
+    @property
+    def silver_postgres_url(self) -> str:
+        return (
+            f"postgresql://{self.silver_postgres_user}:{self.silver_postgres_password}"
+            f"@{self.silver_postgres_host}:{self.silver_postgres_port}/{self.silver_postgres_db}"
+        )
+    
+    @property
+    def gold_postgres_url(self) -> str:
+        return (
+            f"postgresql://{self.gold_postgres_user}:{self.gold_postgres_password}"
+            f"@{self.gold_postgres_host}:{self.gold_postgres_port}/{self.gold_postgres_db}"
+        )
+
 
     @property
     def is_production(self) -> bool:

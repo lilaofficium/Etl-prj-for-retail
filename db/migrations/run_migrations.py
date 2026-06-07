@@ -4,11 +4,7 @@ import os
 
 logger = get_logger("migrations")
 
-def run_migrations():
-    """
-    Run bronze_tables.sql against PostgreSQL.
-    Safe to run multiple times — uses CREATE IF NOT EXISTS.
-    """
+def run_migrations(): 
     sql_path = os.path.join(
         os.path.dirname(__file__), "bronze_tables.sql"
     )
