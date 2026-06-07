@@ -1,23 +1,17 @@
 CREATE SCHEMA IF NOT EXISTS bronze;
--- ── Fakestore Products ───────────────────────────────────
-CREATE TABLE IF NOT EXISTS bronze.fakestore_products (
-    -- Raw API fields
+ALTER CREATE TABLE IF NOT EXISTS bronze.fakestore_products (
     id INTEGER,
     title TEXT,
     price TEXT,
-    -- keep as TEXT in bronze (don't cast)
     description TEXT,
     category TEXT,
     image TEXT,
     rating JSONB,
-    -- store nested dict as JSONB
-    -- Pipeline metadata
     _source VARCHAR(100),
     _ingested_at TIMESTAMP WITH TIME ZONE,
     _pipeline_run VARCHAR(50),
-    _batch_id SERIAL -- auto increment per insert
+    _batch_id SERIAL
 );
--- ── DummyJSON Products ───────────────────────────────────
 CREATE TABLE IF NOT EXISTS bronze.dummyjson_products (
     id INTEGER,
     title TEXT,
@@ -46,7 +40,6 @@ CREATE TABLE IF NOT EXISTS bronze.dummyjson_products (
     _pipeline_run VARCHAR(50),
     _batch_id SERIAL
 );
--- ── DummyJSON Users ──────────────────────────────────────
 CREATE TABLE IF NOT EXISTS bronze.dummyjson_users (
     id INTEGER,
     "firstName" TEXT,
@@ -81,12 +74,10 @@ CREATE TABLE IF NOT EXISTS bronze.dummyjson_users (
     _pipeline_run VARCHAR(50),
     _batch_id SERIAL
 );
--- ── DummyJSON Carts ──────────────────────────────────────
 CREATE TABLE IF NOT EXISTS bronze.dummyjson_carts (
     id INTEGER,
     "userId" TEXT,
     products JSONB,
-    -- list of products kept as JSONB
     total TEXT,
     "discountedTotal" TEXT,
     "totalQuantity" TEXT,
@@ -95,7 +86,6 @@ CREATE TABLE IF NOT EXISTS bronze.dummyjson_carts (
     _pipeline_run VARCHAR(50),
     _batch_id SERIAL
 );
--- ── JSONPlaceholder Posts ────────────────────────────────
 CREATE TABLE IF NOT EXISTS bronze.jsonplaceholder_posts (
     id INTEGER,
     "userId" TEXT,
@@ -106,8 +96,6 @@ CREATE TABLE IF NOT EXISTS bronze.jsonplaceholder_posts (
     _pipeline_run VARCHAR(50),
     _batch_id SERIAL
 );
--- ── Pipeline Run Log ─────────────────────────────────────
--- Tracks every pipeline run — how many rows, success/fail
 CREATE TABLE IF NOT EXISTS bronze.pipeline_run_log (
     run_id VARCHAR(50),
     source_name VARCHAR(100),

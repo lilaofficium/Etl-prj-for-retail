@@ -1,12 +1,12 @@
 sources:
   fakestore_products:
     url: "https://fakestoreapi.com/products"
-    data_key: null # root is a list
+    data_key: null
     format: json
 
   dummyjson_products:
     url: "https://dummyjson.com/products"
-    data_key: products # nested under this key
+    data_key: products
     format: json
 
   dummyjson_users:
