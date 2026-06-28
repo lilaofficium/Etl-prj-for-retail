@@ -248,7 +248,7 @@ All pipelines completed.
 Data Engineer | 5+ years Software Engineering Experience
 
 - GitHub: [github.com/lilaofficium](https://github.com/lilaofficium)
-- LinkedIn: *(add your link)*
+- LinkedIn: *(https://www.linkedin.com/in/lila-kumari-yadav-476926228/)*
 
 ---
 
